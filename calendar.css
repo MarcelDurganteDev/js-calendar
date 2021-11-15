@@ -1,43 +1,49 @@
-body{
+body {
     display: flex;
     width: 90%;
     font-size: 5em;
 }
 
-.monthPre{
+.monthPre {
     color: gray;
     text-align: center;
 }
-.monthNow{
+
+.monthNow {
     color: blue;
     text-align: center;
 }
-.dayNow{
+
+.dayNow {
     border: 2px solid black;
     color: #FF0;
     text-align: center;
 }
-.calendar li{
-   display: grid;
-   grid-template-columns: repeat(7,1fr);
-   grid-template-rows: auto;
+
+.calendar li {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
 }
-.monthNow li{
+
+.monthNow li {
     width: 100%;
     background-color: #000000;
     color: #FFFFFF;
     text-align: center;
-    
 }
-.dayNames{
+
+.dayNames {
     background: #0FF000;
     color: #FFFFFF;
     text-align: center;
 }
-ul{
-  display: grid;
-  grid-template-columns:  repeat(7,1fr);
+
+ul {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
 }
+
 /* montNow li{
 
 } */
