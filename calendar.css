@@ -16,8 +16,9 @@ body {
 
 .dayNow {
     border: 2px solid black;
-    color: #FF0;
+    color: tomato;
     text-align: center;
+
 }
 
 .calendar li {
