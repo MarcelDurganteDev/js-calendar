@@ -138,7 +138,7 @@ function pepe(num){
         minute = pad(time.getMinutes())
         seconds = pad(time.getSeconds());
         houtMin= `${hour}:${minute}:${seconds}`
-        fecha= `${year}-${monthF+1}-${numero}T${houtMin}`
+        fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
         // console.log(fecha)
         // console.log(fecha)
         // modalStart() 
