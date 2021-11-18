@@ -10,9 +10,9 @@ var nextMonth = month + 1;
 var prevMonth = month -1;
 
 function displayCalendar() {
-
+    //TODO load eventBook
     eventBook = loadEventBook()
-    
+
     dateNow.setDate(1)
     calendario = document.getElementById("calendar")
     calendario.innerHTML = null
@@ -60,14 +60,13 @@ function displayCalendar() {
         } else {
             htmlContent += "<li class='monthNow gridCalendar' onMouseOver='this.style.background=\"#a1c4fd\"; this.style.color=\"#FFFFFF\"' " +
                 " onMouseOut='this.style.background=\"#FFFFFF\";this.style.color=\"#000000\"'>" + counter + "</li>";
-                
             }
 
         weekdays2++;
         counter++;
     }
 
-    // building the calendar html body.
+    //TODO building the calendar html body.
     var calendarBody = '<div><input type="button" value="button Test" onclick="openModal()" class="desaparecer"></div>';
     calendarBody += "<div class='calendar'> <div class='monthNow' id='calendarP'><button class='btn btn-primary' id='firstModal'>ADD EVENT</button> <i class='fas fa-chevron-left' id='leftMonth'> </i> <span> " + monthNames[month] + ' ' + year + " </span>  <i class='fas fa-chevron-right' id='rightMonth1'> </i><div id='calendarprueba'></div></div>";
     // calendarBody += "<button class='modal-btn id='openModal'>ADD EVENT</button>";
@@ -76,15 +75,17 @@ function displayCalendar() {
     calendarBody += "<ul>";
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
+    calendarBody += '<button class="btn btn-primary btn-lg" onclick="remiderTimer()"> Test Button </button>'
     calendarBody += "<button id='testBtn' onclick='getDataFromCalendar()'>TEST CLICK</button>";
 
     //todo The Modal
     document.getElementById("calendar").innerHTML = calendarBody;
 
-    // set the content of div .
+    //TODO set the content of div .
     document.getElementById('calendar').innerHTML = calendarBody;
     //Date num
     
+    //TODO
     const monthNow= document.querySelectorAll(".gridCalendar")
   
     // beginModal()
@@ -144,7 +145,7 @@ function pepe(num){
         // modalStart() 
 }
 
-
+//TODO
 function sumMonth() {
     calendario.innerHTML = null
     htmlContent = '';
@@ -161,6 +162,7 @@ function sumMonth() {
     console.log(dateNow.setMonth(dateNow.getMonth() + 1))
 }
 
+//TODO
 function restMonth() {
     calendario.innerHTML = null
     htmlContent = '';

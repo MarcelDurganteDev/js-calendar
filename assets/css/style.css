@@ -4,14 +4,14 @@ body {
     font-size: 5em;
 }
 
+#calendar{
+    margin: 0 auto;
+}
+
 .monthPre {
     color: gray;
     text-align: center;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 .monthNow {
     color:#000000;
     font-weight: bolder;

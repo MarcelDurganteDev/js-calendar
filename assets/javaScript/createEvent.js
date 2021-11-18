@@ -1,28 +1,29 @@
-//TODO create events and save on Local Storage
-function eventData(
-    title,
-    startDate,
-    endDate = 0,
-    reminder = 0,
-    description = '',
-    eventType
-) {
+//! create events and save on Local Storage
+
+let eventBook
+
+//TODO create object to organize on local storage
+function eventData(title, startDate, endDate = 0, reminder = 0,  description = '', eventType ) {
     return {
         title: title,
         startDate: startDate,
         endDate: endDate,
         reminder: reminder,
         description: description,
-        eventType: eventType
-    };
+        eventType : eventType,
+        eventId: Date.now().toString()
+    }
 }
 
-function loadEventBook() {
-    if (localStorage.getItem('eventBook') == null) {
+//TODO load Local storage in eventBook
+function loadEventBook(){
+    if(localStorage.getItem('eventBook') == null){
         return [];
     }
     return JSON.parse(localStorage.getItem('eventBook'));
 }
+
+
 //TODO convert to object
 function convertToObj(arrayName) {
     let obj;
@@ -47,8 +48,8 @@ function convertToObj(arrayName) {
     }
     return obj;
 }
-let eventBook;
 
+//TODO create event, save and load on eventBook
 function createEvent() {
     let arrayData = [];
     const formClass = document.getElementsByClassName('formInputs');
@@ -56,18 +57,20 @@ function createEvent() {
         arrayData.push(formClass[num].value);
         //console.log(formClass[num].value)
     }
-    //console.log(eventBook)
-    eventBook.push(convertToObj(arrayData));
-    localStorage.setItem('eventBook', JSON.stringify(eventBook));
-    closeModal();
+
+    eventBook.push(convertToObj(arrayData))
+
+    localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    closeModal()
 }
 
-function deleteEvent() {
-    const formClass = document.getElementsByClassName('formInputs');
-    arrayDel = [];
-    strDel = '';
-    for (num in formClass) {
-        arrayDel.push(formClass[num].value);
+//TODO delete event
+function deleteEvent(){
+    const formClass = document.getElementsByClassName('formInputs')
+    arrayDel=[]
+    strDel=''
+    for (num in formClass){
+        arrayDel.push(formClass[num].value)
     }
     obj = convertToObj(arrayDel);
     strDel =
@@ -96,7 +99,39 @@ function removeEvent(eventToRemove) {
     eventBook = loadEventBook();
 }
 
-function getDataFromCalendar(num1) {
+
+// function editEvent(){
+
+// }
+functionTime='';
+function remiderTimer() {
+    //const reminder= document.getElementById('reminder')
+    //timeFix= 'Thu Nov 18 2021 15:12:00 GMT+0100 (Hora padrão da Europa Central)'
+    time = new Date()
+    eventBook.forEach(element => {
+        if (element.reminder != 0) {
+            var eventAlert= addMinutes( time, element.reminder).toISOString().slice(0, 16)
+            var eventDateTime= new Date( element.startDate).toISOString().slice(0, 16)
+            if (eventAlert == eventDateTime ){
+                if(functionTime != eventDateTime){
+                    functionTime = eventDateTime;
+                    createmsg(element.title, element.description, element.eventType, element.reminder)
+                    openModal()
+                }
+            }
+        }
+    });
+}
+
+function addMinutes(date, minutes) {
+    return new Date( date.getTime() + minutes * 60000)
+}
+    // eventBook.push(obj)
+    // arrayData=[]
+    // localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    // closeModal()
+   
+function getDataFromCalendar (num1) {
     //COGER LOS EVENTOS DEL DIA
     filter = eventBook.filter(element => {
         // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())

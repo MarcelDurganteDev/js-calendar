@@ -37,3 +37,40 @@ function beginModal(){
     span.addEventListener('click', closeModal)
     
 }
+
+
+function createHideElements(){
+    content="<div><label for='endDate'>End Date</label><input type='datetime-local' name='End Date'  class='formInputs' id='endDate'> </div>"
+
+    content+="<div id='checkboxRemind'><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
+
+    content+="<div id='divReminder'></div>"
+
+    content+="<div><label for='description'>Description</label> <textarea name='description' class='formInputs' id='description' cols='20' rows='5'></textarea></div>"
+
+    hideForm[0].innerHTML= content
+
+    const reminder= document.getElementById('reminder')
+    reminder.addEventListener('click', displayReminder)
+}
+
+function createReminder(){
+    const divReminder= document.getElementById('divReminder')
+
+    content= "<label for='remindTimer'> Time reminder </label> <select name='remindTimer' class='formInputs' id='remindTimer'> <option value='5'> 5 Minutes</option> <option value='10'> 10 Minutes</option> <option value='15'> 15 Minutes</option> <option value='30'> 30 Minutes</option> <option value='60'> 1 hour</option> </select> "
+
+    divReminder.innerHTML= content
+}
+
+function createmsg(title, description = 'Have a Beatifull Day', type, time ){
+    content = "<span class='close'>&times;</span>"
+    content += ` <div class='modal-content msg-content'><h1> ${title} </h1>`
+    content += `<h2> Reminder you have a Event in ${time} min</h2>`
+    content+= `<h3> Event Type:  ${type}</h3>`
+    content += `<h4>"Description:  ${description}</h4></div>`
+
+    modalContent.innerHTML= content
+
+    const span = document.getElementsByClassName("close")[0];
+    span.addEventListener('click', closeModal)
+}
