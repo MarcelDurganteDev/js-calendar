@@ -80,8 +80,7 @@ function createmsg(title, description = 'Have a Beatifull Day', type, time ){
 
 // }
 function openForm(id) {
-    openBook= eventBook.filter(event=>{
-        event.eventId == id
-    })
+    if( eventBook.eventId == id ) 
+    openBook = eventBook 
     console.log(openBook)
 }
