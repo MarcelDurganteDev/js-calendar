@@ -1,8 +1,8 @@
-function beginModal(){
-   
+function beginModal() {
+
     //console.log(eventBook)
     content = "<span class='close'>&times;</span>"
-    content +=" <div ><form class='eventForm modal-content '><div><label for='title'>Title</label> <input type='text' class='formInputs' name='title' id='title' placeholder='My Event' required> </div>"
+    content += " <div ><form class='eventForm modal-content '><div><label for='title'>Title</label> <input type='text' class='formInputs' name='title' id='title' placeholder='My Event' required> </div>"
 
     content += "<div><label for='begindate'> Initial date</label><input type='datetime-local' name='begindate' class='formInputs' id='begindateId' value='' required></div> "
 
@@ -14,65 +14,107 @@ function beginModal(){
 
     content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
 
-    modalContent.innerHTML= content
-    if (!fecha){
+    modalContent.innerHTML = content
+    if (!fecha) {
         fecha = undefined
-    } else{
-    document.getElementById("begindateId").value=fecha;
+    } else {
+        document.getElementById("begindateId").value = fecha;
 
-    }    
+    }
 
 
     //TODO Dom modal
-    const endDateCheck= document.getElementById('endDateCheck')
-    hideForm= document.getElementsByClassName('hideform')
-    const deleteButton= document.getElementById('delete')
-    const createButton= document.getElementById('create')
+    const endDateCheck = document.getElementById('endDateCheck')
+    hideForm = document.getElementsByClassName('hideform')
+    const deleteButton = document.getElementById('delete')
+    const createButton = document.getElementById('create')
     const span = document.getElementsByClassName("close")[0];
 
     //TODO event Listener
-    endDateCheck.addEventListener('click', displayForm)
+    endDateCheck.addEventListener('change', displayForm)
     deleteButton.addEventListener('click', deleteEvent)
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
-    
 }
 
 
-function createHideElements(){
-    content="<div><label for='endDate'>End Date</label><input type='datetime-local' name='End Date'  class='formInputs' id='endDate'> </div>"
+function createHideElements() {
+    content = "<div><label for='endDate'>End Date</label><input type='datetime-local' name='End Date'  class='formInputs' id='endDate'> </div>"
 
-    content+="<div id='checkboxRemind'><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
+    content += "<div id='checkboxRemind'><label for='reminder'> Remind me when event Start</label><input type='checkbox' name='reminder' id='reminder'> </div>"
 
-    content+="<div id='divReminder'></div>"
+    content += "<div id='divReminder'></div>"
 
-    content+="<div><label for='description'>Description</label> <textarea name='description' class='formInputs' id='description' cols='20' rows='5'></textarea></div>"
+    content += "<div><label for='description'>Description</label> <textarea name='description' class='formInputs' id='description' cols='20' rows='5'></textarea></div>"
 
-    hideForm[0].innerHTML= content
+    hideForm[0].innerHTML = content
 
-    const reminder= document.getElementById('reminder')
+    const reminder = document.getElementById('reminder')
     reminder.addEventListener('click', displayReminder)
     limit()
 
 }
 
-function createReminder(){
-    const divReminder= document.getElementById('divReminder')
+function createReminder() {
+    const divReminder = document.getElementById('divReminder')
 
-    content= "<label for='remindTimer'> Time reminder </label> <select name='remindTimer' class='formInputs' id='remindTimer'> <option value='5'> 5 Minutes</option> <option value='10'> 10 Minutes</option> <option value='15'> 15 Minutes</option> <option value='30'> 30 Minutes</option> <option value='60'> 1 hour</option> </select> "
+    content = "<label for='remindTimer'> Time reminder </label> <select name='remindTimer' class='formInputs' id='remindTimer'> <option value='5'> 5 Minutes</option> <option value='10'> 10 Minutes</option> <option value='15'> 15 Minutes</option> <option value='30'> 30 Minutes</option> <option value='60'> 1 hour</option> </select> "
 
-    divReminder.innerHTML= content
+    divReminder.innerHTML = content
 }
 
-function createmsg(title, description = 'Have a Beatifull Day', type, time ){
+function createmsg(title, description = 'Have a Beatifull Day', type, time) {
     content = "<span class='close'>&times;</span>"
     content += ` <div class='modal-content msg-content'><h1> ${title} </h1>`
     content += `<h2> Reminder you have a Event in ${time} min</h2>`
-    content+= `<h3> Event Type:  ${type}</h3>`
-    content += `<h4>"Description:  ${description}</h4></div>`
+    content += `<h3> Event Type:  ${type}</h3>`
+    content += `<h4>Description:  ${description}</h4></div>`
 
-    modalContent.innerHTML= content
+    modalContent.innerHTML = content
 
     const span = document.getElementsByClassName("close")[0];
     span.addEventListener('click', closeModal)
+}
+// function openDayEvent(id) {
+//     eventclick = document.getElementsByClassName("displayEvent")
+//     eventclick.addEventListener("click", openForm)
+//     dayEvent= document.getElementById(id)
+
+// }
+function openForm(id) {
+    openBook = eventBook.filter(event => {
+        if (event.eventId == id) {
+            return true
+        }
+        return false
+    })
+    console.log(openBook[0])
+    setTimeout(() => {
+        beginModal()
+
+        document.getElementById("title").value = openBook[0].title
+        document.getElementById("begindateId").value = openBook[0].startDate
+        endDateCheck = document.getElementById("endDateCheck").checked = true
+        displayForm()
+
+        title = openBook[0].title
+        begindateId = openBook[0].begindateId
+        console.log(begindateId)
+        //endDateCheck.checked == true
+
+        endDate = document.getElementById("endDate")
+        checkboxreminder = document.getElementById("reminder")
+
+        endDate = openBook[0].endDate
+        checkboxreminder.checked == true
+
+        reminder = document.getElementById("remindTimer")
+        description = document.getElementById("description")
+        eventType = document.getElementById("eventType")
+
+        reminder = openBook[0].reminder
+        description = openBook[0].description
+        eventType = openBook[0].eventType
+    }, 1000);
+
 }

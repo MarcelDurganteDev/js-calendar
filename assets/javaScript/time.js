@@ -7,7 +7,7 @@ function displayHour() {
         houtMin= `${hour}:${minute}:${seconds}`
         fisrsRow= document.querySelector("#calendarprueba")
         fisrsRow.textContent=houtMin
-        remiderTimer()
+        //remiderTimer()
     }, 1000);
 }
 function pad(value) {

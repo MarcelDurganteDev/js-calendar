@@ -21,6 +21,14 @@
   width: 70% !important; /* Could be more or less, depending on screen size */
 }
 
+.msg-content{
+  border: none !important ;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 8%;
+}
+
 .eventForm div, input{
   padding: 0;
   width: 100%;
@@ -30,6 +38,11 @@
   border: 1px solid #888;
 }
 
+.displayEvent{
+  margin: 1%;
+  height: 25%;
+  width: 100%;
+}
 .eventForm textarea{
   width: 100%;
 }

@@ -115,8 +115,10 @@ function removeEvent(eventToRemove) {
 functionTime = '';
 function remiderTimer() {
     //const reminder= document.getElementById('reminder')
-    //timeFix= 'Thu Nov 18 2021 15:12:00 GMT+0100 (Hora padrão da Europa Central)'
-    time = new Date();
+    //timeFix= 'Thu Nov 18 2021 17:14:00 GMT+0100 (Hora padrão da Europa Central)'
+    //time = new Date(timeFix)
+    console.log(time)
+    time = new Date()
     eventBook.forEach(element => {
         if (element.reminder != 0) {
             var eventAlert = addMinutes(time, element.reminder)
@@ -145,14 +147,10 @@ function addMinutes(date, minutes) {
     // DUVIDAS HOW THESE PARAMETERS WORK
     return new Date(date.getTime() + minutes * 60000);
 }
-// eventBook.push(obj)
-// arrayData=[]
-// localStorage.setItem('eventBook', JSON.stringify(eventBook))
-// closeModal()
 
-function getDataFromCalendar(num1) {
+function getDataFromCalendar (num1) {
     //COGER LOS EVENTOS DEL DIA
-    filter = eventBook.filter(element => {
+    filter= eventBook.filter(element=>{
         // console.log(new Date(fecha).getFullYear(), new Date(element.startDate).getFullYear())
         if (
             new Date(fecha).getFullYear() ==
@@ -170,21 +168,46 @@ function getDataFromCalendar(num1) {
                     return true;
                 }
             }
-        }
-        return false;
-    });
-
+        } 
+        return false
+    })
+    
+    
     filter.forEach(event => {
-        eventDay = new Date(event.startDate).getDate();
-        eventMonth = new Date(event.startDate).getMonth();
-        eventYear = new Date(event.startDate).getFullYear();
-        let eventText = document.createElement('h3');
-        eventTextId = event.eventId;
-        eventText.setAttribute('id', eventTextId);
-        eventText.innerHTML = event.title;
-        num1.appendChild(eventText);
+        eventDay = new Date(event.startDate).getDate()
+        eventMonth = new Date(event.startDate).getMonth()
+        eventYear =  new Date(event.startDate).getFullYear()
+        id = event.eventId
+        finalDate= new Date(event.endDate).getDate()
+        finalMonth= new Date(event.endDate).getMonth()
+        finalYear=new Date(event.endDate).getFullYear()
+//         console.log(id)
+//         console.log(eventDay)
+//         console.log(eventMonth +1)
+//         console.log(eventYear)
+//         console.log(event.title)
+// console.log(filter)  
+        let eventOnCalendar = document.createElement('button')
+        let eventText = document.createElement('button')
+        eventText.setAttribute("class", 'btn btn-primary displayEvent ')
+        eventText.setAttribute("id",id)
+        //eventText.setAttribute("class", 'displayEvent')
+        eventText.setAttribute("onclick",  ' openForm('+ id +')')
+        eventText.innerHTML = event.title
+        num1.appendChild(eventText)
+    /*     if (element.startDate == fecha){
+        } */
     });
 }
+
+// function pruebaMia(num1){
+//     if(num1)
+// }
+// eventBook.forEach(element => {
+//     prueba=element.title
+//     console.log(prueba)
+// });
+   // crear otra funcion donde dev criar um div e ponder este div con este titotlo y esta data. e ponder este dive dentro del dia del calendario 
 
 
 
