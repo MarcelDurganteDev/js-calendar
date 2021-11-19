@@ -52,6 +52,8 @@ function createHideElements(){
 
     const reminder= document.getElementById('reminder')
     reminder.addEventListener('click', displayReminder)
+    limit()
+
 }
 
 function createReminder(){

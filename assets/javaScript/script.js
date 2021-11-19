@@ -12,7 +12,6 @@ var prevMonth = month -1;
 function displayCalendar() {
     //TODO load eventBook
     eventBook = loadEventBook()
-
     dateNow.setDate(1)
     calendario = document.getElementById("calendar")
     calendario.innerHTML = null
@@ -34,12 +33,13 @@ function displayCalendar() {
 
     // days in previous month and next one , and day of week.
     var nextDate = new Date(nextMonth + ' 1 ,' + year);
-    var weekdays = nextDate.getDay();
+    var weekdays = nextDate.getDay(); 
     var weekdays2 = weekdays;
     var numOfDays = dayPerMonth[month];
+    
 
     // this leave a white space for days of pervious month.
-    while (weekdays > 0) {
+    while (weekdays > 0) {                                                // DUVIDA PORQUE MAIOR QUE ZERO?
         htmlContent += "<li class='monthPre'></li  >";
         weekdays--;
     }
@@ -48,7 +48,7 @@ function displayCalendar() {
     while (counter <= numOfDays) {
         // When to start new line.
         if (weekdays2 > 6) {
-            weekdays2 = 0;
+            weekdays2 = 0;                      // DUVIDA, PORQUE IGUAL A ZERO
             htmlContent += '</ul><ul> ';
         }
 
@@ -76,18 +76,16 @@ function displayCalendar() {
     calendarBody += htmlContent;
     calendarBody += "</ul></div>";
     calendarBody += '<button class="btn btn-primary btn-lg" onclick="remiderTimer()"> Test Button </button>'
-    calendarBody += "<button id='testBtn' onclick='getDataFromCalendar()'>TEST CLICK</button>";
 
     //todo The Modal
-    document.getElementById("calendar").innerHTML = calendarBody;
+    document.getElementById("calendar").innerHTML = calendarBody;  
 
     //TODO set the content of div .
-    document.getElementById('calendar').innerHTML = calendarBody;
+    // document.getElementById('calendar').innerHTML = calendarBody;      
     //Date num
     
     //TODO
     const monthNow= document.querySelectorAll(".gridCalendar")
-  
     // beginModal()
     
     fecha = undefined;
@@ -136,11 +134,11 @@ function pepe(num){
         numero="0"+numero
         time = new Date();
         hour = time.getHours();
-        minute = pad(time.getMinutes())
+        minute = pad(time.getMinutes())                 //  DUVIDA WHY PAD()
         seconds = pad(time.getSeconds());
         houtMin= `${hour}:${minute}:${seconds}`
         fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
-        // console.log(fecha)
+        //console.log(fecha)
         // console.log(fecha)
         // modalStart() 
 }
@@ -151,15 +149,12 @@ function sumMonth() {
     htmlContent = '';
     FebNumberOfDays = '';
     counter = 1;
-    console.log(dateNow.getMonth())
-    // month = dateNow.setMonth(dateNow.getMonth())
+    month = dateNow.setMonth(dateNow.getMonth() + 1)
     day = dateNow.getDate();
     month = dateNow.getMonth();
     year = dateNow.getFullYear();
     nextMonth = month + 1;
-    console.log(dateNow.getMonth())
     displayCalendar()
-    console.log(dateNow.setMonth(dateNow.getMonth() + 1))
 }
 
 //TODO
