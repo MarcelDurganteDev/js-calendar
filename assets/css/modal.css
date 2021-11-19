@@ -38,6 +38,11 @@
   border: 1px solid #888;
 }
 
+.displayEvent{
+  margin: 1%;
+  height: 25%;
+  width: 100%;
+}
 .eventForm textarea{
   width: 100%;
 }
