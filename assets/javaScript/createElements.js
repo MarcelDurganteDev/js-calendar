@@ -1,3 +1,4 @@
+//function beginModal({title = '', startDate = new Date(), })
 function beginModal() {
 
     //console.log(eventBook)
