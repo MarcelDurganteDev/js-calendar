@@ -50,13 +50,13 @@ function cleanHideElements() {
     }
 }
 
-function cleanReminder() {
-    cont = 0;
-    divElements = divReminder.childElementCount + 1;
-    while (divElements > cont) {
-        console.log(divElements, cont);
-        divReminder.removeChild(divReminder.firstChild);
-        cont++;
+function cleanReminder(){
+    cont= 0
+    divElements= divReminder.childElementCount + 1;
+    while(divElements > cont ){
+        // console.log(divElements, cont)
+        divReminder.removeChild(divReminder.firstChild)
+        cont++
     }
 }
 

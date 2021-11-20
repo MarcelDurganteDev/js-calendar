@@ -91,7 +91,6 @@ function displayCalendar() {
     fecha = undefined;
     monthNow.forEach(num=> {
         num.addEventListener("click", () => {
-            
             pepe(num)
             modalStart()
         })
@@ -140,6 +139,7 @@ function pepe(num){
         houtMin= `${hour}:${minute}:${seconds}`
         fecha= `${year}-${monthF + 1}-${numero}T${houtMin}`
         //console.log(fecha)
+        // console.log(fecha)
         // console.log(fecha)
         // modalStart() 
 }

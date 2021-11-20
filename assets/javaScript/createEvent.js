@@ -31,45 +31,31 @@ function loadEventBook() {
 }
 
 //TODO convert to object
-function convertToObj(arrayName) {
-    // DUVIDA, DID NOT UNDERSTAND THE LOGIC
-    let obj;
-    if (arrayName.length > 6) {
-        obj = eventData(
-            arrayName[0],
-            arrayName[1],
-            arrayName[2],
-            arrayName[3],
-            arrayName[4],
-            arrayName[5]
-        );
-    } else {
-        obj = eventData(
-            arrayName[0],
-            arrayName[1],
-            arrayName[1],
-            arrayName[3],
-            arrayName[4],
-            arrayName[2] // WHY 2 HERE
-        );
+function convertToObj(arrayName){
+    console.log(arrayName)
+    let obj
+    if( arrayName.length > 6){
+        obj= eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5])
+        console.log(obj)
+    } else{
+        obj= eventData(arrayName[0], arrayName[1], arrayName[1] , arrayName[3], arrayName[4], arrayName[2])
+        console.log(obj)
     }
     return obj;
 }
 
 //TODO create event, save and load on eventBook
 function createEvent() {
-    let arrayData = [];
-    const formClass = document.getElementsByClassName('formInputs');
-    limit()
-    for (num in formClass) {
-        arrayData.push(formClass[num].value);
-        //console.log(formClass[num].value)
+    let arrayData=[]
+    const formClass = document.getElementsByClassName('formInputs')
+    for (num in formClass){
+        arrayData.push(formClass[num].value)
+        console.log(formClass[num].value)
     }
 
-    eventBook.push(convertToObj(arrayData));
-
-    localStorage.setItem('eventBook', JSON.stringify(eventBook));
-    closeModal();
+    eventBook.push(convertToObj(arrayData))
+    localStorage.setItem('eventBook', JSON.stringify(eventBook))
+    closeModal()
 }
 
 //TODO delete event
@@ -200,6 +186,9 @@ function getDataFromCalendar (num1) {
     });
 }
 
+function modifyForm() {
+    console.log('jssjsjjssjsjsjsj')
+}
 // function pruebaMia(num1){
 //     if(num1)
 // }
