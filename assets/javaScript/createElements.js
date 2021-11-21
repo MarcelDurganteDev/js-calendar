@@ -1,10 +1,10 @@
-function beginModal() {
 
-    //console.log(eventBook)
+//TODO charge the first part of Modal
+function beginModal() {
     content = "<span class='close'>&times;</span>"
     content += " <div ><form class='eventForm modal-content '><div><label for='title'>Title</label> <input type='text' class='formInputs' name='title' id='title' placeholder='My Event' required> </div>"
 
-    content += "<div><label for='begindate'> Initial date</label><input type='datetime-local' name='begindate' class='formInputs' id='begindateId' value='' required></div> "
+    content += `<div><label for='begindate'> Initial date</label><input type='datetime-local' name='begindate' class='formInputs' id='begindateId' required></div> `
 
     content += "<div id='checkboxEndDate'><label for='endDateCheck'>End Date </label><input type='checkbox' name='End Date' id='endDateCheck'> </div>"
 
@@ -37,22 +37,19 @@ function beginModal() {
 
     //TODO event Listener
     endDateCheck.addEventListener('input', displayForm)
-    //deleteButton.addEventListener('click', deleteEvent)
     deleteButton.addEventListener('click',  function(){
         idValue = document.getElementById('eventId').value
-        //console.log(idValue)
         deleteEvent(idValue)
     })
     modifyButton.addEventListener('click', function(){
         idValue = document.getElementById('eventId').value
-        //console.log(idValue)
         modifyForm(idValue)
     })
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
 }
 
-
+//TODO create end Date when checked
 function createHideElements() {
     content = "<div><label for='endDate'>End Date</label><input type='datetime-local' name='End Date'  class='formInputs' id='endDate'> </div>"
 
@@ -64,11 +61,13 @@ function createHideElements() {
 
     hideForm[0].innerHTML = content
 
+    //TODO Dom end date
     document.getElementById("endDate").value =  document.getElementById("begindateId").value;
     const reminder = document.getElementById('reminder')
     reminder.addEventListener('input', displayReminder)
 }
 
+//TODO create reminder when checked
 function createReminder() {
     const divReminder = document.getElementById('divReminder')
 
@@ -77,6 +76,7 @@ function createReminder() {
     divReminder.innerHTML = content
 }
 
+//TODO create a Mensage to reminder
 function createmsg(title, description = 'Have a Beatifull Day', type, time) {
     content = "<span class='close'>&times;</span>"
     content += ` <div class='modal-content msg-content'><h1> ${title} </h1>`
@@ -89,12 +89,8 @@ function createmsg(title, description = 'Have a Beatifull Day', type, time) {
     const span = document.getElementsByClassName("close")[0];
     span.addEventListener('click', closeModal)
 }
-// function openDayEvent(id) {
-//     eventclick = document.getElementsByClassName("displayEvent")
-//     eventclick.addEventListener("click", openForm)
-//     dayEvent= document.getElementById(id)
 
-// }
+//TODO open the form with all values
 function openForm(id) {
     openBook = eventBook.filter(event => {
         if (event.eventId == id) {
@@ -102,7 +98,8 @@ function openForm(id) {
         }
         return false
     })
-    
+
+    //TODO open modal and run the values
     setTimeout(() => {
         beginModal()
         createHideElements()
@@ -110,13 +107,10 @@ function openForm(id) {
         document.getElementById("title").value = openBook[0].title
         document.getElementById("begindateId").value = openBook[0].startDate
         document.getElementById("endDateCheck").checked = true
-        // document.getElementById("reminder").checked=true
         document.getElementById("reminder").checked=true
         displayReminder()
         reminderDefault = 0
-        //console.log(document.getElementById("remindTimer").value=openBook[0].reminder)
         if(document.getElementById("remindTimer").value=openBook[0].reminder ==  0){
-            
             document.getElementById("remindTimer").value=reminderDefault
         } else{
             document.getElementById("remindTimer").value=openBook[0].reminder
@@ -125,7 +119,6 @@ function openForm(id) {
         endDate = openBook[0].endDate
         document.getElementById("description").value=openBook[0].description
         valueDefaultPersonal='personal'
-        //console.log(openBook[0].eventType)
         if( document.getElementById("eventType").value=openBook[0].eventType == undefined){
             document.getElementById("eventType").value=valueDefaultPersonal
         } else{
@@ -133,5 +126,4 @@ function openForm(id) {
         }
         document.getElementById("eventId").value = openBook[0].eventId
     }, 00);
-
 }

@@ -25,10 +25,7 @@ body {
     text-align: center;
 }
 .calendar li {
-    /* display: grid;
-    grid-template-columns: repeat(7,1fr); */
     list-style: none;
-    /* grid-template-rows: auto; */
 }
 .monthNow li {
     width: 100%;
@@ -38,7 +35,7 @@ body {
 }
 
 .dayNames {
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);   
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     color: #FFFFFF;
     text-align: center;
     font-size: 30px;
@@ -50,10 +47,7 @@ ul {
 }
 
 .gridCalendar {
-    /* padding: 6px; */
     font-size: 20px;
-    /* display: grid; */
-    /* position: relative; */
     height: 150px;
     width: 150px;
     border-radius: 10px;
@@ -74,6 +68,3 @@ ul {
 #firstModal{
     width: 100%;
 }
-/* #color1{
-    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
-} */

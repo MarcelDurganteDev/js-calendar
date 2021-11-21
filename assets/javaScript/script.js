@@ -1,7 +1,9 @@
+//TODO variables
 var htmlContent = '';
 var FebNumberOfDays = '';
 var counter = 1;
 
+//TODO dates variables
 var dateNow = new Date();
 var month = dateNow.getMonth();
 var day = dateNow.getDate();
@@ -9,15 +11,15 @@ var year = dateNow.getFullYear();
 var nextMonth = month + 1;
 var prevMonth = month -1;
 
+//TODO create calendar
 function displayCalendar() {
     //TODO load eventBook
     eventBook = loadEventBook()
     dateNow.setDate(1)
     calendario = document.getElementById("calendar")
     calendario.innerHTML = null
-    // var prevMonth = month -1;
 
-    //Determing if February (28,or 29)
+    //TODO Determing if February (28, or 29)
     if (month == 1) {
         if ((year % 100 != 0 && year % 4 == 0) || year % 400 == 0) {
             FebNumberOfDays = 29;
@@ -26,12 +28,13 @@ function displayCalendar() {
         }
     }
 
-    // names of months and week days.
+    //TODO names of months and week days.
     var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday'];
+    // var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'Friday', 'Saturday'];
     var dayPerMonth = ['31', '' + FebNumberOfDays + '', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
 
-    // days in previous month and next one , and day of week.
+    //TODO  days in previous month and next one , and day of week.
+    
     var nextDate = new Date(nextMonth + ' 1 ,' + year);
     var weekdays = nextDate.getDay(); 
     var weekdays2 = weekdays;
