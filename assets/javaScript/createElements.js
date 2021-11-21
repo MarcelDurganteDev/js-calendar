@@ -12,7 +12,9 @@ function beginModal() {
 
     content += "</div><div> <label for='typeEvent'> Event Type</label><select name='eventType'class='formInputs' id='eventType'><option value='personal'> Personal</option><option value='Meeting'> Meeting</option><option value='Study'> Study</option> <option value='other'> Other</option></select> </div>"
 
-    content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button><button class='btn btn-secondary btn-lg' id='modifyForm'> Modify Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
+    content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button><button class=' btn btn-secondary btn-lg' id='modifyForm'> Modify Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
+
+    content+="<div ><input type='text' class='formInputs' name='eventId' id='eventId'></div>"
 
     modalContent.innerHTML = content
     if (!fecha) {
@@ -30,11 +32,22 @@ function beginModal() {
     const modifyButton = document.getElementById('modifyForm')
     const createButton = document.getElementById('create')
     const span = document.getElementsByClassName("close")[0];
+    idValue = document.getElementById('eventId').value
+
 
     //TODO event Listener
     endDateCheck.addEventListener('input', displayForm)
-    deleteButton.addEventListener('click', deleteEvent)
-    modifyButton.addEventListener('click', modifyForm)
+    //deleteButton.addEventListener('click', deleteEvent)
+    deleteButton.addEventListener('click',  function(){
+        idValue = document.getElementById('eventId').value
+        //console.log(idValue)
+        deleteEvent(idValue)
+    })
+    modifyButton.addEventListener('click', function(){
+        idValue = document.getElementById('eventId').value
+        //console.log(idValue)
+        modifyForm(idValue)
+    })
     createButton.addEventListener('click', createEvent)
     span.addEventListener('click', closeModal)
 }
@@ -93,15 +106,17 @@ function openForm(id) {
     setTimeout(() => {
         beginModal()
         createHideElements()
+
         document.getElementById("title").value = openBook[0].title
         document.getElementById("begindateId").value = openBook[0].startDate
         document.getElementById("endDateCheck").checked = true
         // document.getElementById("reminder").checked=true
         document.getElementById("reminder").checked=true
         displayReminder()
-        reminderDefault=5
-        console.log(document.getElementById("remindTimer").value=openBook[0].reminder)
+        reminderDefault = 0
+        //console.log(document.getElementById("remindTimer").value=openBook[0].reminder)
         if(document.getElementById("remindTimer").value=openBook[0].reminder ==  0){
+            
             document.getElementById("remindTimer").value=reminderDefault
         } else{
             document.getElementById("remindTimer").value=openBook[0].reminder
@@ -110,12 +125,13 @@ function openForm(id) {
         endDate = openBook[0].endDate
         document.getElementById("description").value=openBook[0].description
         valueDefaultPersonal='personal'
-        console.log(openBook[0].eventType)
+        //console.log(openBook[0].eventType)
         if( document.getElementById("eventType").value=openBook[0].eventType == undefined){
             document.getElementById("eventType").value=valueDefaultPersonal
         } else{
             document.getElementById("eventType").value=openBook[0].eventType
         }
+        document.getElementById("eventId").value = openBook[0].eventId
     }, 00);
 
 }
