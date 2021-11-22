@@ -30,6 +30,9 @@ function convertToObj(arrayName) {
     let obj
 
     if (arrayName.length > 7) {
+        if( arrayName[6] == ''){
+            arrayName[6] = undefined
+        }
         obj = eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5], arrayName[6])
         // for (elm in obj) {
         //     console.log(elm)
