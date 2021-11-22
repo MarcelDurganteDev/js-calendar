@@ -4,7 +4,7 @@ function beginModal() {
     content = "<span class='close'>&times;</span>"
     content += " <div ><form class='eventForm modal-content '><div><label for='title'>Title</label> <input type='text' class='formInputs' name='title' id='title' placeholder='My Event' required> </div>"
 
-    content += `<div><label for='begindate'> Initial date</label><input type='datetime-local' name='begindate' class='formInputs' id='begindateId' required></div> `
+    content += `<div><label for='begindate'> Initial date</label><input type='datetime-local' value='' name='begindate' class='formInputs' id='begindateId' required></div> `
 
     content += "<div id='checkboxEndDate'><label for='endDateCheck'>End Date </label><input type='checkbox' name='End Date' id='endDateCheck'> </div>"
 
@@ -14,7 +14,7 @@ function beginModal() {
 
     content += "<div> <button class='btn btn-primary btn-lg' id='delete'> Delete Event </button><button class=' btn btn-secondary btn-lg' id='modifyForm'> Modify Event </button> <button class='btn btn-primary btn-lg' id='create'> Create Event </button> </div></form> </div>"
 
-    content+="<div ><input type='text' class='formInputs' name='eventId' id='eventId'></div>"
+    content += "<div ><input type='text' class='formInputs' name='eventId' id='eventId'></div>"
 
     modalContent.innerHTML = content
     if (!fecha) {
@@ -37,11 +37,11 @@ function beginModal() {
 
     //TODO event Listener
     endDateCheck.addEventListener('input', displayForm)
-    deleteButton.addEventListener('click',  function(){
+    deleteButton.addEventListener('click', function () {
         idValue = document.getElementById('eventId').value
         deleteEvent(idValue)
     })
-    modifyButton.addEventListener('click', function(){
+    modifyButton.addEventListener('click', function () {
         idValue = document.getElementById('eventId').value
         modifyForm(idValue)
     })
@@ -62,7 +62,7 @@ function createHideElements() {
     hideForm[0].innerHTML = content
 
     //TODO Dom end date
-    document.getElementById("endDate").value =  document.getElementById("begindateId").value;
+    document.getElementById("endDate").value = document.getElementById("begindateId").value;
     const reminder = document.getElementById('reminder')
     reminder.addEventListener('input', displayReminder)
 }
@@ -107,22 +107,22 @@ function openForm(id) {
         document.getElementById("title").value = openBook[0].title
         document.getElementById("begindateId").value = openBook[0].startDate
         document.getElementById("endDateCheck").checked = true
-        document.getElementById("reminder").checked=true
+        document.getElementById("reminder").checked = true
         displayReminder()
         reminderDefault = 0
-        if(document.getElementById("remindTimer").value=openBook[0].reminder ==  0){
-            document.getElementById("remindTimer").value=reminderDefault
-        } else{
-            document.getElementById("remindTimer").value=openBook[0].reminder
-            }
-        document.getElementById("endDate").value=openBook[0].endDate
+        if (document.getElementById("remindTimer").value = openBook[0].reminder == 0) {
+            document.getElementById("remindTimer").value = reminderDefault
+        } else {
+            document.getElementById("remindTimer").value = openBook[0].reminder
+        }
+        document.getElementById("endDate").value = openBook[0].endDate
         endDate = openBook[0].endDate
-        document.getElementById("description").value=openBook[0].description
-        valueDefaultPersonal='personal'
-        if( document.getElementById("eventType").value=openBook[0].eventType == undefined){
-            document.getElementById("eventType").value=valueDefaultPersonal
-        } else{
-            document.getElementById("eventType").value=openBook[0].eventType
+        document.getElementById("description").value = openBook[0].description
+        valueDefaultPersonal = 'personal'
+        if (document.getElementById("eventType").value = openBook[0].eventType == undefined) {
+            document.getElementById("eventType").value = valueDefaultPersonal
+        } else {
+            document.getElementById("eventType").value = openBook[0].eventType
         }
         document.getElementById("eventId").value = openBook[0].eventId
     }, 00);

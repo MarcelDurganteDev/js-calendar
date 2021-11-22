@@ -40,7 +40,7 @@ function displayForm() {
 }
 
 function displayReminder() {
-    reminder.checked == true ? createReminder() : cleanReminder();
+    (reminder.checked == true) ? createReminder() : cleanReminder();
 }
 
 
@@ -50,22 +50,21 @@ function cleanHideElements() {
     }
 }
 
-function cleanReminder(){
-    cont= 0
-    divElements= divReminder.childElementCount + 1;
-    while(divElements > cont ){
-        // console.log(divElements, cont)
+function cleanReminder() {
+    cont = 0
+    divElements = divReminder.childElementCount + 1;
+    while (divElements > cont) {
         divReminder.removeChild(divReminder.firstChild)
         cont++
     }
 }
 
-window.onkeydown = key => {
-    escape(key);
-};
+window.onkeydown = (key) => {
+    escape(key)
+}
 
 function escape(key) {
     if (key.code == 'Escape') {
-        closeModal();
+        closeModal()
     }
 }

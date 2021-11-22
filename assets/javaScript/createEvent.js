@@ -25,14 +25,16 @@ function loadEventBook() {
 
 //TODO convert to object
 function convertToObj(arrayName) {
-    console.log(arrayName)
     let obj
-    if (arrayName.length > 6) {
+
+    if (arrayName.length > 7) {
+        if(arrayName[6]== ''){
+            arrayName[6]= undefined
+        }
         obj = eventData(arrayName[0], arrayName[1], arrayName[2], arrayName[3], arrayName[4], arrayName[5], arrayName[6])
-        console.log(obj)
+
     } else {
         obj = eventData(arrayName[0], arrayName[1], arrayName[1], arrayName[3], arrayName[4], arrayName[2])
-        console.log(obj)
     }
     return obj;
 }
@@ -40,7 +42,6 @@ function convertToObj(arrayName) {
 //TODO create event, save and load on eventBook
 function createEvent() {
     let arrayData = resortInputs()
-
     eventBook.push(convertToObj(arrayData))
     localStorage.setItem('eventBook', JSON.stringify(eventBook))
     closeModal()
@@ -51,7 +52,6 @@ function deleteEvent(id) {
     eventBook = eventBook.filter(element => {
         return (element.eventId != id)
     })
-    console.log(eventBook)
     localStorage.setItem('eventBook', JSON.stringify(eventBook))
     eventBook = loadEventBook()
 }
@@ -90,9 +90,9 @@ function addMinutes(date, minutes) {
 function getDataFromCalendar(num1) {
     // //TODO COGER LOS EVENTOS DEL DIA
     filter = eventBook.filter(element => {
-        if (new Date(fecha).getFullYear() == new Date(element.startDate).getFullYear()) {
-            if (new Date(fecha).getMonth() == new Date(element.startDate).getMonth()) {
-                if (new Date(fecha).getDate() == new Date(element.startDate).getDate()) {
+        if ((new Date(fecha).getFullYear() <= new Date(element.startDate).getFullYear()) || (new Date(fecha).getFullYear() <= new Date(element.endDate).getFullYear())) {
+            if ((new Date(fecha).getMonth() <= new Date(element.startDate).getMonth()) || (new Date(fecha).getMonth() <= new Date(element.endDate).getMonth())) {
+                if ((new Date(fecha).getDate() >= new Date(element.startDate).getDate()) != (new Date(fecha).getDate() > new Date(element.endDate).getDate())) {
                     return true
                 }
             }
@@ -102,24 +102,25 @@ function getDataFromCalendar(num1) {
 
     //TODO when find day print the button
     filter.forEach(event => {
+
         eventDay = new Date(event.startDate).getDate()
         eventMonth = new Date(event.startDate).getMonth()
         eventYear = new Date(event.startDate).getFullYear()
         id = event.eventId
-        // console.log(event.description)
         finalDate = new Date(event.endDate).getDate()
         finalMonth = new Date(event.endDate).getMonth()
         finalYear = new Date(event.endDate).getFullYear()
         let eventText = document.createElement('button')
-        if(event.description == "personal" ){
+        
+        if (event.eventType == "personal") {
             eventText.setAttribute("class", 'btn btn-primary displayEvent ')
-        } else if(event.description == "Meeting"){
+        } else if (event.eventType == "Meeting") {
             eventText.setAttribute("class", 'btn btn-success displayEvent ')
-        } else if(event.description == "Study"){
+        } else if (event.eventType == "Study") {
             eventText.setAttribute("class", 'btn btn-danger displayEvent ')
-        } else if(event.description== "other"){
+        } else if (event.eventType == "other") {
             eventText.setAttribute("class", 'btn btn-dark displayEvent ')
-        } else{
+        } else {
             eventText.setAttribute("class", 'btn btn-primary displayEvent ')
         }
         // eventText.setAttribute("class", 'btn btn-primary displayEvent ')
@@ -132,7 +133,6 @@ function getDataFromCalendar(num1) {
 
 //TODO modify a event by ID
 function modifyForm(id) {
-    console.log(document.getElementById("eventId").value)
     //TODO simple validation if event exist or not
     if (document.getElementById("eventId").value == '') {
         content = "<span class='close'>&times;</span>"
@@ -165,6 +165,7 @@ function modifyForm(id) {
 function resortInputs() {
     const formClass = document.getElementsByClassName('formInputs')
     arrayForm = []
+
     for (num in formClass) {
         arrayForm.push(formClass[num].value)
     }
